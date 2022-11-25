@@ -1,0 +1,40 @@
+{% extends "layout.twig" %}
+
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <div class="blog-section section-top-gap-100">
+        <div class="box-wrapper">
+            <div class="blog-list-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="custome-container-with-sidebar d-flex flex-column-reverse flex-lg-row-reverse">
+                                <div class="container-width-37 sidebar-rightside">
+                                    {% include('partials/sidebar-wrapper.twig')%}
+                                </div>
+                                <div class="container-width-63">
+                                    <!-- ...::: Start Article Details Section :::... -->
+                                    {% include('partials/article-details-section.twig')%}
+                                    <!-- ...::: End Article Details Section :::... -->
+
+                                    <!-- ...::: Start Article Feed Display Section :::... -->
+                                    {% include('partials/article-feed-display-section.twig')%}
+                                    <!-- ...::: End Article Feed Display Section :::... -->
+
+                                    <!-- ...::: Start Article Comment Section :::... -->
+                                    {% include('partials/article-comment-section.twig')%}
+                                    <!-- ...::: End Article Comment Section :::... -->
+
+                                    <!-- ...::: Start Article Comment Section :::... -->
+                                    {% include('partials/article-form-section.twig')%}
+                                    <!-- ...::: End Article Comment Section :::... -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

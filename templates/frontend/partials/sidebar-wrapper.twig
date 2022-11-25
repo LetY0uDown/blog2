@@ -1,0 +1,39 @@
+<div class="sidebar-wrapper">
+    <!-- Start Sidebar Widget Single Item - Search -->
+    <div class="sidebar-widget-singel-item widget-box-bg gray-bg">
+        <h4 class="title">Search</h4>
+        <form class="widget-search" action="#" method="post">
+            <input type="search" placeholder="Search here" required>
+            <button type="submit"><i class="icofont-search-1"></i></button>
+        </form>
+    </div>
+    <!-- End Sidebar Widget Single Item - Search -->
+
+    <!-- Start Sidebar Widget Single Item - Service Catagory -->
+    <div class="sidebar-widget-singel-item widget-box-bg gray-bg">
+        <h4 class="title">Категории</h4>
+        <ul class="widget-catagory">
+            {% for category in categories %}
+                <li><a href="/category/{{ category.id }}"><i class="icofont-double-right"></i>{{ category.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- End Sidebar Widget Single Item - Service Catagory -->
+
+    <!-- Start Sidebar Widget Single Item - Tags -->
+    <div class="sidebar-widget-singel-item widget-box-bg">
+        <h4 class="title">popular tags</h4>
+        <ul class="widget-tags">
+            <li><a href="">Agency</a></li>
+            <li><a href="">Company</a></li>
+            <li><a href="">Business</a></li>
+            <li><a href="">Startup</a></li>
+            <li><a href="">Marketing</a></li>
+            <li><a href="">Cleaner</a></li>
+            <li><a href="">Corporate</a></li>
+            <li><a href="">Brand</a></li>
+
+        </ul>
+    </div>
+    <!-- End Sidebar Widget Single Item - Tags -->
+</div>
