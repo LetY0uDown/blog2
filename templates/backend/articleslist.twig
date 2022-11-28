@@ -44,7 +44,7 @@
                     <tbody>
                     {% for article in articles %}
                     <tr>
-                        <td>{{ article.title }}</td>
+                        <td>{{ article.title|raw }}</td>
                         <td>
                             <img src="{{ article.intro_image }}" class="rounded-circle p-1 border" alt="..." width="90" height="90">
                             </td>
@@ -54,14 +54,17 @@
                             <p>{{ article.intro_text|raw }}</p>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-warning">
-                                 <i class="lni lni-pencil"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="lni lni-trash"></i>
-                            </button>
+                            <a href="/admin/article-edit/{{ article.id }}">
+                                <button type="button" class="btn btn-warning">
+                                     <i class="lni lni-pencil"></i>
+                                </button>
+                            </a>
+                            <a href="/admin/article-delete/{{ article.id }}">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="lni lni-trash"></i>
+                                </button>
+                            </a>
                         </td>
-
                     </tr>
                     {% endfor %}
                     </tbody>

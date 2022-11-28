@@ -18,10 +18,15 @@
             <div class="card border-top border-0 border-4 border-primary">
                 <div class="card-body p-5">
                     <form class="row g-3" action="/admin/article-add" method="post">
+                        <input value="{{ article.id }}" type="hidden"
+                               name="id">
+
                         <div class="col-md-6">
                             <label for="title" class="form-label">Заголовок статьи</label>
-                            <input name="title" type="text" class="form-control" id="title">
+                            <input name="title" type="text" class="form-control" id="title"
+                                   value="{{ article.title }}">
                         </div>
+
                         <div class="col-md-6">
                             <label for="category" class="form-label">Категория</label>
                             <select name="category" id="category" class="form-select">
@@ -32,18 +37,24 @@
                         </div>
 
                         <div class="col-12">
-                            <input id="ckfinder-input" type="text" class="form-control" name="intro_image">
+                            <input id="ckfinder-input" type="text"
+                                   value="{{ article.intro_image }}"
+                                   class="form-control" name="intro_image">
                             <a id="ckfinder-modal" class="btn btn-primary px-5">Browse Server</a>
                         </div>
 
                         <div class="col-12">
                             <label for="intro_text" class="form-label">Вводный текст</label>
-                            <textarea class="summernote" name="intro_text" id="summernote" ></textarea>
+                            <textarea class="summernote" name="intro_text" id="summernote">
+                                {{ article.intro_text }}
+                            </textarea>
                         </div>
 
                         <div class="col-12">
                             <label for="content" class="form-label">Текст статьи</label>
-                            <textarea class="editor1" name="content" id="editor1" rows="15" cols="80"></textarea>
+                            <textarea class="editor1" name="content" id="editor1" rows="15" cols="80">
+                                {{ article.content }}
+                            </textarea>
                         </div>
 
                         <div class="col-12">

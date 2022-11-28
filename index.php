@@ -31,15 +31,22 @@ $router->group('/admin', function (RouteGroup $router) {
     $router->map('GET', '/', 'App\BackEndController::index');
     $router->map('GET', '/logout', 'App\BackEndController::userLogOut');
     $router->map('GET', '/users', 'App\BackEndController::showUsersList');
+
     $router->map('GET', '/articles', 'App\BackEndController::showArticlesList');
     $router->map('GET', '/article-add', 'App\BackEndController::showAddArticleForm');
     $router->map('POST','/article-add', 'App\BackEndController::AddArticle');
+    $router->map('GET','/article-edit/{id:number}','App\BackEndController::showEditArticleForm');
+    $router->map('GET','/article-delete/{id:number}', 'App\BackEndController::deleteArticle');
+
     $router->map('GET', '/tags', 'App\BackEndController::showTagsList');
     $router->map('GET', '/tag-add', 'App\BackEndController::showAddTagForm');
     $router->map('POST','/tag-add', 'App\BackEndController::AddTag');
+    $router->map('GET','/tag-delete/{id:number}', 'App\BackEndController::deleteTag');
+
     $router->map('GET', '/categories', 'App\BackEndController::showCategoriesList');
     $router->map('GET', '/category-add', 'App\BackEndController::showAddCategoryForm');
     $router->map('POST','/category-add', 'App\BackEndController::AddCategory');
+    $router->map('GET','/category-delete/{id:number}', 'App\BackEndController::deleteCategory');
 })->middleware(new AuthMiddleware);
 
 $response = $router->dispatch($request);

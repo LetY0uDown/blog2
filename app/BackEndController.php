@@ -211,18 +211,27 @@ use Auth;
 
     public function showAddArticleForm(ServerRequestInterface $request) : ResponseInterface
     {
-        $articles = $this->getAll('articles');
         $categories = $this->getAll('categories');
-        $html = $this->View->showAddArticleForm($articles, $categories);
+        $html = $this->View->showAddArticleForm(['id' => 0], $categories);
 
         return $this->responseWrapper($html);
+    }
+
+    private function getArticle($id) : mixed
+    {
+        if ($id == 0)
+            $article = $this->Model->create('articles');
+        else
+            $article = $this->Model->get('articles', $id);
+
+        return $article;
     }
 
     public function AddArticle(ServerRequestInterface $request) : ResponseInterface
     {
         $requestBody = $request->getParsedBody();
-
-        $article = $this->Model->create('articles');
+        $id = $requestBody['id'];
+        $article = $this->getArticle($id);
 
         $article->title = $requestBody['title'];
         $article->category_id = $requestBody['category'];
@@ -259,7 +268,6 @@ use Auth;
     public function showCategoriesList(ServerRequestInterface $request) : ResponseInterface
     {
         $categories = $this->getAll('categories');
-
         $html = $this->View->showCategoriesList($categories);
 
         return  $this->responseWrapper($html);
@@ -268,7 +276,7 @@ use Auth;
     public function showAddCategoryForm(ServerRequestInterface $request) : ResponseInterface
     {
         $categories = $this->getAll('categories');
-        $html = $this->View->showAddTagForm($categories);
+        $html = $this->View->showAddCategoryForm($categories);
 
         return $this->responseWrapper($html);
     }
@@ -283,6 +291,43 @@ use Auth;
 
         $category->save();
 
+        return $this->goUrl('/admin/categories');
+    }
+
+    public function showEditArticleForm(ServerRequestInterface $request, array $args) : ResponseInterface
+    {
+        $article = $this->Model->get('articles', $args['id']);
+        $categories = $this->getAll('categories');
+
+        $html = $this->View->showAddArticleForm($article, $categories);
+
+        return $this->responseWrapper($html);
+    }
+
+    public function deleteArticle(ServerRequestInterface $request, array $args) : ResponseInterface
+    {
+        $article = $this->Model->get('articles', $args['id']);
+
+        $this->Model->delete($article);
+
+        return  $this->goUrl('/admin/articles');
+    }
+
+    public function deleteCategory(ServerRequestInterface $request, array $args) : ResponseInterface
+    {
+        $category = $this->Model->get('categories', $args['id']);
+
+        $this->Model->delete($category);
+
         return  $this->goUrl('/admin/categories');
+    }
+
+    public function deleteTag(ServerRequestInterface $request, array $args) : ResponseInterface
+    {
+        $tag = $this->Model->get('tags', $args['id']);
+
+        $this->Model->delete($tag);
+
+        return  $this->goUrl('/admin/tags');
     }
 }
